@@ -6,10 +6,12 @@ class Program
 {
     static async Task Main()
     {
+        // Read Azure function app's Environemnt variables list from HostedConfigs.json
         var streamReader = new StreamReader("HostedConfigs.json");
         string hostedConfigsString = await streamReader.ReadToEndAsync();
         streamReader.Close();
         streamReader.Dispose();
+        // Read Azure function app's local settings from HostedConfigs.json
         streamReader = new StreamReader("Targetconfig.json");
         string targetCongfigsString = await streamReader.ReadToEndAsync();
         var jsonArray = JsonConvert.DeserializeObject<JArray>(hostedConfigsString);
